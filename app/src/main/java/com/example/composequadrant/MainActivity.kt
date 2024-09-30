@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.modifier.modifierLocalOf
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -44,22 +45,37 @@ fun ComposeQuadrant() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
     ) {
         Row(Modifier.weight(1f)) {
             Column(Modifier.weight(1f)) {
-                Quadrant()
+                Quadrant(
+                    modifier = Modifier,
+                    stringResource(R.string.text_composable),
+                    stringResource(R.string.description_text_composable)
+                )
             }
             Column(Modifier.weight(1f)) {
-                Quadrant()
+                Quadrant(
+                    modifier = Modifier,
+                    stringResource(R.string.image_composable),
+                    stringResource(R.string.description_image_composable)
+                )
             }
         }
         Row(Modifier.weight(1f)){
             Column(Modifier.weight(1f)) {
-                Quadrant()
+                Quadrant(
+                    modifier = Modifier,
+                    stringResource(R.string.row_composable),
+                    stringResource(R.string.description_row_composable)
+                )
             }
             Column(Modifier.weight(1f)) {
-                Quadrant()
+                Quadrant(
+                    modifier = Modifier,
+                    stringResource(R.string.column_composable),
+                    stringResource(R.string.description_column_composable)
+                )
             }
         }
     }
@@ -67,21 +83,24 @@ fun ComposeQuadrant() {
 
 @Composable
 fun Quadrant(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    title: String,
+    description: String,
 ) {
     Column (
         modifier = modifier
-            .fillMaxSize(),
+            .fillMaxSize()
+            .padding(26.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "title",
+            text = title,
             modifier = Modifier.padding(bottom = 16.dp),
             fontWeight = FontWeight.Bold
         )
         Text(
-            text = "description",
+            text = description,
             textAlign = TextAlign.Justify
         )
     }
